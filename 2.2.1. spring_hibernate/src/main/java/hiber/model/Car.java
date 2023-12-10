@@ -14,6 +14,8 @@ public class Car {
     private String model;
     @Column(name="series")
     private int series;
+    @OneToOne
+    private User user;
 
 
     public Car() {}
@@ -37,6 +39,14 @@ public class Car {
 
     public int getSeries() {
         return series;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public User getUser() {
+        return user;
     }
 
     @Override

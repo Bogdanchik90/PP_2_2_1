@@ -19,7 +19,7 @@ public class User {
 
    @Column(name = "email")
    private String email;
-//   @OneToOne(mappedBy = "car", cascade = CascadeType.ALL)
+
    @OneToOne
    @JoinColumn(name="car_id")
    private Car car;
