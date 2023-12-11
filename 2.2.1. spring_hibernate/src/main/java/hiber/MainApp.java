@@ -24,8 +24,12 @@ public class MainApp {
       userService.add(new User("User4", "Lastname4", "user4@mail.ru"));
 
       User u = new User("User5", "Lastname5", "user5@mail.ru");
-      u.setCar(new Car("bmw",5));
-//      userService.add(u);
+      Car car = new Car("bmw",5);
+      u.setCar(car);
+      car.setUser(u);
+
+
+      userService.add(u);
 
       List<User> users = userService.listUsers();
       for (User user : users) {
@@ -37,6 +41,6 @@ public class MainApp {
          System.out.println();
       }
 
-//      context.close();
+      context.close();
    }
 }

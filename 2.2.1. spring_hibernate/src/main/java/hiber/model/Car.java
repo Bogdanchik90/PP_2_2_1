@@ -1,5 +1,7 @@
 package hiber.model;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 
 @Entity
@@ -14,7 +16,7 @@ public class Car {
     private String model;
     @Column(name="series")
     private int series;
-    @OneToOne
+    @OneToOne(mappedBy = "car")
     private User user;
 
 
@@ -51,7 +53,7 @@ public class Car {
 
     @Override
     public String toString() {
-        return "\nCar{" +
+        return "Car{" +
                 "id=" + id +
                 ", model='" + model + '\'' +
                 ", series=" + series +
