@@ -22,22 +22,17 @@ public class UserDaoImp implements UserDao {
       sessionFactory.getCurrentSession().save(user);
    }
    @Override
-   public User getUserByCar(String model, int series) {
-      String hql = String.format("from User where User.car.model = %s and User.car.series = %s",model,series);
-//
-//      Session session = sessionFactory.getCurrentSession();
-//
-//      Query query = (Query) session.createQuery(hql, User.class).getSingleResult();
-//      User user = (User) query.getSingleResult();
-
+   public List<User> getUserByCar(String model, int series) {
 
       Session session = sessionFactory.getCurrentSession();
 
-      User user = session.createQuery(hql, User.class).setParameter(model,series).uniqueResult();
-      return user;
+      Query query = session.createQuery("from User u  " +
+                      "where u.car.model = :paramModel and u.car.series = :paramSeries")
+              .setParameter("paramModel", model)
+              .setParameter("paramSeries",series);
+      List<User> us = query.getResultList();
 
-
-
+      return us;
    }
 
    @Override
